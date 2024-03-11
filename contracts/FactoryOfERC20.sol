@@ -20,11 +20,21 @@ contract FactoryOfERC20Tokens {
     PausableMintBurn _PausableMintBurnInstance;
     PausableInflation _PausableInflationInstance;
 
+    event Deploed_InflationInstance(address);
+    event Deploed_DiflationInstance(address);
+    event Deploed_BurnableInflationInstance(address);
+    event Deployed_BurnableDiflationInstance(address);
+    event Deploed__PauseableDiflationInstance(address);
+    event Deploed_PausableDiflationBurnInstance(address);
+    event Deployed_PausableMintBurnInstance(address);
+    event Deployed_PausableInflationInstance(address);
+
     function deploy_InflationInstance(
         string memory name,
         string memory symbol_
     ) external {
         _InflationInstance = new Inflation(name, symbol_);
+        emit Deploed_InflationInstance(address(_InflationInstance));
     }
 
     function deploy_DiflationInstance(
@@ -33,6 +43,7 @@ contract FactoryOfERC20Tokens {
         string memory symbol_
     ) external {
         _DiflationInstance = new Diflation(amount, name, symbol_);
+        emit Deploed_DiflationInstance(address(_DiflationInstance));
     }
 
     function deploy_BurnableInflationInstance(
@@ -40,6 +51,9 @@ contract FactoryOfERC20Tokens {
         string memory symbol_
     ) external {
         _BurnableInflationInstance = new BurnableInflation(name, symbol_);
+        emit Deploed_BurnableInflationInstance(
+            address(_BurnableInflationInstance)
+        );
     }
 
     function deploy_BurnableDiflationInstance(
@@ -51,6 +65,9 @@ contract FactoryOfERC20Tokens {
             amount,
             name,
             symbol_
+        );
+        emit Deploed__PauseableDiflationInstance(
+            address(_BurnableDiflationInstance)
         );
     }
 
@@ -64,6 +81,9 @@ contract FactoryOfERC20Tokens {
             name,
             symbol_
         );
+        emit Deploed__PauseableDiflationInstance(
+            address(_PauseableDiflationInstance)
+        );
     }
 
     function deploy_PausableDiflationBurnInstance(
@@ -76,6 +96,9 @@ contract FactoryOfERC20Tokens {
             name,
             symbol_
         );
+        emit Deploed_PausableDiflationBurnInstance(
+            address(_PausableDiflationBurnInstance)
+        );
     }
 
     function deploy_PausableMintBurnInstance(
@@ -83,6 +106,9 @@ contract FactoryOfERC20Tokens {
         string memory symbol_
     ) external {
         _PausableMintBurnInstance = new PausableMintBurn(name, symbol_);
+        emit Deployed_PausableMintBurnInstance(
+            address(_PausableMintBurnInstance)
+        );
     }
 
     function deploy_PausableInflationInstance(
@@ -90,5 +116,8 @@ contract FactoryOfERC20Tokens {
         string memory symbol_
     ) external {
         _PausableInflationInstance = new PausableInflation(name, symbol_);
+        emit Deployed_PausableInflationInstance(
+            address(_PausableInflationInstance)
+        );
     }
 }

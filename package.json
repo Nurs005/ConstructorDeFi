@@ -2,7 +2,8 @@
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@openzeppelin/contracts": "^5.0.2",
-    "hardhat": "^2.21.0"
+    "hardhat": "^2.21.0",
+    "hardhat-contract-sizer": "^2.10.0"
   },
   "name": "new-project-factory",
   "version": "1.0.0",
