@@ -8,8 +8,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract Inflation is ERC20, Ownable {
     constructor(
         string memory name,
-        string memory symbol_
-    ) ERC20(name, symbol_) Ownable(msg.sender) {}
+        string memory symbol_,
+        address initialOwner
+    ) ERC20(name, symbol_) Ownable(initialOwner) {}
 
     function mint(address to, uint256 amount) public onlyOwner {
         _mint(to, amount);

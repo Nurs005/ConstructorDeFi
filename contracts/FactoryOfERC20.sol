@@ -10,6 +10,7 @@ import "./PauseableDiflBurn.sol";
 import "./PauseableInflation.sol";
 import "./PauseableMintBurn.sol";
 
+// TODO: перепиши тесты добавь входной параметр адрес овнера
 contract FactoryOfERC20Tokens {
     BurnableDiflation _BurnableDiflationInstance;
     BurnableInflation _BurnableInflationInstance;
@@ -31,26 +32,33 @@ contract FactoryOfERC20Tokens {
 
     function deploy_InflationInstance(
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) external {
-        _InflationInstance = new Inflation(name, symbol_);
+        _InflationInstance = new Inflation(name, symbol_, initialOwner);
         emit Deploed_InflationInstance(address(_InflationInstance));
     }
 
     function deploy_DiflationInstance(
         uint amount,
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) external {
-        _DiflationInstance = new Diflation(amount, name, symbol_);
+        _DiflationInstance = new Diflation(amount, name, symbol_, initialOwner);
         emit Deploed_DiflationInstance(address(_DiflationInstance));
     }
 
     function deploy_BurnableInflationInstance(
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) external {
-        _BurnableInflationInstance = new BurnableInflation(name, symbol_);
+        _BurnableInflationInstance = new BurnableInflation(
+            name,
+            symbol_,
+            initialOwner
+        );
         emit Deploed_BurnableInflationInstance(
             address(_BurnableInflationInstance)
         );
@@ -59,12 +67,14 @@ contract FactoryOfERC20Tokens {
     function deploy_BurnableDiflationInstance(
         uint amount,
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) external {
         _BurnableDiflationInstance = new BurnableDiflation(
             amount,
             name,
-            symbol_
+            symbol_,
+            initialOwner
         );
         emit Deploed__PauseableDiflationInstance(
             address(_BurnableDiflationInstance)
@@ -74,12 +84,14 @@ contract FactoryOfERC20Tokens {
     function deploy_PauseableDiflationInstance(
         uint amount,
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) external {
         _PauseableDiflationInstance = new PauseableDiflation(
             amount,
             name,
-            symbol_
+            symbol_,
+            initialOwner
         );
         emit Deploed__PauseableDiflationInstance(
             address(_PauseableDiflationInstance)
@@ -89,12 +101,14 @@ contract FactoryOfERC20Tokens {
     function deploy_PausableDiflationBurnInstance(
         uint amount,
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) external {
         _PausableDiflationBurnInstance = new PausableDiflationBurn(
             amount,
             name,
-            symbol_
+            symbol_,
+            initialOwner
         );
         emit Deploed_PausableDiflationBurnInstance(
             address(_PausableDiflationBurnInstance)
@@ -103,9 +117,14 @@ contract FactoryOfERC20Tokens {
 
     function deploy_PausableMintBurnInstance(
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) external {
-        _PausableMintBurnInstance = new PausableMintBurn(name, symbol_);
+        _PausableMintBurnInstance = new PausableMintBurn(
+            name,
+            symbol_,
+            initialOwner
+        );
         emit Deployed_PausableMintBurnInstance(
             address(_PausableMintBurnInstance)
         );
@@ -113,9 +132,14 @@ contract FactoryOfERC20Tokens {
 
     function deploy_PausableInflationInstance(
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) external {
-        _PausableInflationInstance = new PausableInflation(name, symbol_);
+        _PausableInflationInstance = new PausableInflation(
+            name,
+            symbol_,
+            initialOwner
+        );
         emit Deployed_PausableInflationInstance(
             address(_PausableInflationInstance)
         );

@@ -10,7 +10,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract PausableMintBurn is ERC20, ERC20Burnable, ERC20Pausable, Ownable {
     constructor(
         string memory name,
-        string memory symbol_
+        string memory symbol_,
+        address initialOwner
     ) ERC20(name, symbol_) Ownable(msg.sender) {}
 
     function pause() public onlyOwner {

@@ -9,8 +9,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract PausableInflation is ERC20, ERC20Pausable, Ownable {
     constructor(
         string memory name,
-        string memory symbol_
-    ) ERC20(name, symbol_) Ownable(msg.sender) {}
+        string memory symbol_,
+        address initialOwner
+    ) ERC20(name, symbol_) Ownable(initialOwner) {}
 
     function pause() public onlyOwner {
         _pause();

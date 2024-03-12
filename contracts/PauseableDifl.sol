@@ -10,8 +10,9 @@ contract PauseableDiflation is ERC20, ERC20Pausable, Ownable {
     constructor(
         uint amount,
         string memory name,
-        string memory symbol_
-    ) ERC20(name, symbol_) Ownable(msg.sender) {
+        string memory symbol_,
+        address initialOwner
+    ) ERC20(name, symbol_) Ownable(initialOwner) {
         _mint(msg.sender, amount * 10 ** decimals());
     }
 
