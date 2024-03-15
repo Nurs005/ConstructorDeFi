@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: SEE LICENSE IN LICENSE
+// // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
 import "./BurnDiflation.sol";
@@ -10,138 +10,120 @@ import "./PauseableDiflBurn.sol";
 import "./PauseableInflation.sol";
 import "./PauseableMintBurn.sol";
 
-// TODO: перепиши тесты добавь входной параметр адрес овнера
 contract FactoryOfERC20Tokens {
-    BurnableDiflation _BurnableDiflationInstance;
-    BurnableInflation _BurnableInflationInstance;
-    Diflation _DiflationInstance;
-    Inflation _InflationInstance;
-    PauseableDiflation _PauseableDiflationInstance;
-    PausableDiflationBurn _PausableDiflationBurnInstance;
-    PausableMintBurn _PausableMintBurnInstance;
-    PausableInflation _PausableInflationInstance;
+    BurnableDiflation private _burnableDiflationInstance;
+    BurnableInflation private _burnableInflationInstance;
+    Diflation private _diflationInstance;
+    Inflation private _inflationInstance;
+    PauseableDiflation private _pauseableDiflationInstance;
+    PausableDiflationBurn private _pausableDiflationBurnInstance;
+    PausableMintBurn private _pausableMintBurnInstance;
+    PausableInflation private _pausableInflationInstance;
 
-    event Deploed_InflationInstance(address);
-    event Deploed_DiflationInstance(address);
-    event Deploed_BurnableInflationInstance(address);
-    event Deployed_BurnableDiflationInstance(address);
-    event Deploed__PauseableDiflationInstance(address);
-    event Deploed_PausableDiflationBurnInstance(address);
-    event Deployed_PausableMintBurnInstance(address);
-    event Deployed_PausableInflationInstance(address);
+    event InflationInstanceDeployed(address indexed instance);
+    event DiflationInstanceDeployed(address indexed instance);
+    event BurnableInflationInstanceDeployed(address indexed instance);
+    event BurnableDiflationInstanceDeployed(address indexed instance);
+    event PauseableDiflationInstanceDeployed(address indexed instance);
+    event PausableDiflationBurnInstanceDeployed(address indexed instance);
+    event PausableMintBurnInstanceDeployed(address indexed instance);
+    event PausableInflationInstanceDeployed(address indexed instance);
 
-    function deploy_InflationInstance(
+    function deployInflationI(
         string memory name,
         string memory symbol_,
         address initialOwner
     ) external {
-        _InflationInstance = new Inflation(name, symbol_, initialOwner);
-        emit Deploed_InflationInstance(address(_InflationInstance));
+        _inflationInstance = new Inflation(name, symbol_, initialOwner);
+        emit InflationInstanceDeployed(address(_inflationInstance));
     }
 
-    function deploy_DiflationInstance(
+    function deployDeflI(
         uint amount,
         string memory name,
-        string memory symbol_,
-        address initialOwner
+        string memory symbol_
     ) external {
-        _DiflationInstance = new Diflation(amount, name, symbol_, initialOwner);
-        emit Deploed_DiflationInstance(address(_DiflationInstance));
+        _diflationInstance = new Diflation(amount, name, symbol_);
+        emit DiflationInstanceDeployed(address(_diflationInstance));
     }
 
-    function deploy_BurnableInflationInstance(
+    function deployBurnblInflI(
         string memory name,
         string memory symbol_,
         address initialOwner
     ) external {
-        _BurnableInflationInstance = new BurnableInflation(
+        _burnableInflationInstance = new BurnableInflation(
             name,
             symbol_,
             initialOwner
         );
-        emit Deploed_BurnableInflationInstance(
-            address(_BurnableInflationInstance)
+        emit BurnableInflationInstanceDeployed(
+            address(_burnableInflationInstance)
         );
     }
 
-    function deploy_BurnableDiflationInstance(
+    function deployBurnblDefl(
         uint amount,
         string memory name,
         string memory symbol_,
         address initialOwner
     ) external {
-        _BurnableDiflationInstance = new BurnableDiflation(
+        _burnableDiflationInstance = new BurnableDiflation(
             amount,
             name,
             symbol_,
             initialOwner
         );
-        emit Deploed__PauseableDiflationInstance(
-            address(_BurnableDiflationInstance)
+        emit BurnableDiflationInstanceDeployed(
+            address(_burnableDiflationInstance)
         );
     }
 
-    function deploy_PauseableDiflationInstance(
+    function deployPauseableDfl(
+        string memory name,
+        string memory symbol_,
+        address initialOwner
+    ) external {
+        _inflationInstance = new Inflation(name, symbol_, initialOwner);
+        emit InflationInstanceDeployed(address(_inflationInstance));
+    }
+
+    function deployPauseableInfl(
+        string memory name,
+        string memory symbol_,
+        address initialOwner
+    ) external {
+        _pausableInflationInstance = new PausableInflation(
+            name,
+            symbol_,
+            initialOwner
+        );
+        emit InflationInstanceDeployed(address(_pausableInflationInstance));
+    }
+
+    function deployPausBurnDfl(
         uint amount,
         string memory name,
         string memory symbol_,
         address initialOwner
     ) external {
-        _PauseableDiflationInstance = new PauseableDiflation(
+        _pausableDiflationBurnInstance = new PausableDiflationBurn(
             amount,
             name,
             symbol_,
             initialOwner
         );
-        emit Deploed__PauseableDiflationInstance(
-            address(_PauseableDiflationInstance)
+        emit PausableDiflationBurnInstanceDeployed(
+            address(_pausableDiflationBurnInstance)
         );
     }
 
-    function deploy_PausableDiflationBurnInstance(
-        uint amount,
+    function deployPausInflBurn(
         string memory name,
         string memory symbol_,
         address initialOwner
     ) external {
-        _PausableDiflationBurnInstance = new PausableDiflationBurn(
-            amount,
-            name,
-            symbol_,
-            initialOwner
-        );
-        emit Deploed_PausableDiflationBurnInstance(
-            address(_PausableDiflationBurnInstance)
-        );
-    }
-
-    function deploy_PausableMintBurnInstance(
-        string memory name,
-        string memory symbol_,
-        address initialOwner
-    ) external {
-        _PausableMintBurnInstance = new PausableMintBurn(
-            name,
-            symbol_,
-            initialOwner
-        );
-        emit Deployed_PausableMintBurnInstance(
-            address(_PausableMintBurnInstance)
-        );
-    }
-
-    function deploy_PausableInflationInstance(
-        string memory name,
-        string memory symbol_,
-        address initialOwner
-    ) external {
-        _PausableInflationInstance = new PausableInflation(
-            name,
-            symbol_,
-            initialOwner
-        );
-        emit Deployed_PausableInflationInstance(
-            address(_PausableInflationInstance)
-        );
+        _inflationInstance = new Inflation(name, symbol_, initialOwner);
+        emit InflationInstanceDeployed(address(_inflationInstance));
     }
 }

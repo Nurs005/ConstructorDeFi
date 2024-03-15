@@ -1,0 +1,100 @@
+.constructor-div {
+    width: 250px;
+    height: 200px;
+    border: 1px solid black;
+    position: relative;
+    top: 200px;
+    left: 370px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.constructor-div p {
+    position: absolute;
+    top: 50px;
+    left: 45px;
+}
+
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+fieldset {
+    margin-bottom: 15px;
+}
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#premintAmount {
+    display: none;
+}
+
+#connectWallet {
+    float: right;
+    position: relative;
+    right: 50px;
+    top: 20px;
+}
+
+#addressOfWallet {
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 200px;
+    /* Установите желаемую ширину элемента */
+    white-space: nowrap;
+    /* Запретить перенос текста */
+    overflow: hidden;
+    /* Скрыть содержимое, которое не помещается внутрь элемента */
+    text-overflow: ellipsis;
+    display: none;
+}
+
+textarea {
+    display: none;
+}

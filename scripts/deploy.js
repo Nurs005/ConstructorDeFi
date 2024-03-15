@@ -7,21 +7,23 @@
 const hre = require("hardhat");
 
 async function main() {
-  const currentTimestampInSeconds = Math.round(Date.now() / 1000);
-  const unlockTime = currentTimestampInSeconds + 60;
+  const FactoryOfBurnbleDfl = await hre.ethers.getContractFactory('FactoryOfBurnableDiflation');
+  const FactoryOfBurnableInfl = await hre.ethers.getContractFactory('FactoryBurnableInflation');
+  const FactoryOfPauseDfl = await hre.ethers.getContractFactory('FactoryOfBurnableDiflationPaus');
+  const FactoryOfPauseInfl = await hre.ethers.getContractFactory('FactoryInflationPauseable');
+  const FactoryOfPauseBurnDfl = await hre.ethers.getContractFactory('FactoryOfBurnableDiflationPaus');
+  const FactoryOfPauseBurnInfl = await hre.ethers.getContractFactory('FactoryInflationPausBurn');
+  const Factory = await hre.ethers.getContractFactory('FactoryOfPauseableDifl');
 
-  const lockedAmount = hre.ethers.parseEther("0.001");
+  const factory = await Factory.deploy();
+  factory.waitForDeployment();
 
-  const lock = await hre.ethers.deployContract("Lock", [unlockTime], {
-    value: lockedAmount,
-  });
 
-  await lock.waitForDeployment();
 
   console.log(
-    `Lock with ${ethers.formatEther(
-      lockedAmount
-    )}ETH and unlock timestamp ${unlockTime} deployed to ${lock.target}`
+    `factoryOfBurnableInfl deploed: ${factory.target};
+    
+     `
   );
 }
 
